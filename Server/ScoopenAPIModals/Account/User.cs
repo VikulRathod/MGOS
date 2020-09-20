@@ -17,5 +17,7 @@ namespace ScoopenAPIModals.Account
         public DateTime LockedDateTime { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public int IsAuthenticated { get; set; }
+        //public string UserRole{ get; set; }--arjun
+        
     }
 }

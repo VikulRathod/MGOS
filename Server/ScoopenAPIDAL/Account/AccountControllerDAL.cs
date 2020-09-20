@@ -100,6 +100,8 @@ namespace ScoopenAPIDAL
                         user.AccountLocked = (int)reader["AccountLocked"];
                         user.IsAuthenticated = (int)reader["Authenticated"];
                         user.RetryAttempts = (int)reader["RetryAttempts"];
+                        //user.UserRole= (int)reader["UserRole"];
+
                     }
                 }
             }

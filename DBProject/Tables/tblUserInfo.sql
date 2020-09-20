@@ -1,7 +1,7 @@
-USE [ScoopenDB]
+USE [MoveGoodsDB]
 GO
 
-/****** Object:  Table [dbo].[tblUserInfo]    Script Date: 12-09-2020 14:26:23 ******/
+/****** Object:  Table [dbo].[tblUserInfo]    Script Date: 2020-09-20 7:42:57 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -16,13 +16,12 @@ CREATE TABLE [dbo].[tblUserInfo](
 	[UserId] [int] NULL,
 	[FirstName] [varchar](100) NULL,
 	[LastName] [varchar](100) NULL,
-	[HighestQualification] [varchar](100) NULL,
-	[Occupation] [varchar](100) NULL,
+	[Photo] [image] NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+)
 
 GO
 

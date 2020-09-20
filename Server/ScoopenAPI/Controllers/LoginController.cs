@@ -23,8 +23,9 @@
             if (user.IsAuthenticated == 1 && user.AccountLocked == 0)
             {
                 string token = createToken(login.Username);
-
-                return Request.CreateResponse(HttpStatusCode.OK, token);
+                //string role = "user";--a
+                //return Request.CreateResponse(HttpStatusCode.OK, new string[] {token,role });--a
+                return Request.CreateResponse(HttpStatusCode.OK,token);
             }
             else
             {

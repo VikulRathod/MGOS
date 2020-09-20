@@ -93,7 +93,7 @@ namespace RegistrationAndLogin.Controllers
             //string pwd = Crypto.Hash(login.Password);
 
             var response = registerApiController.Authenticate(login);
-
+            //here we get role --a
             if (response != null && response.IsSuccessStatusCode)
             {
                 int timeout = 20;
@@ -108,8 +108,9 @@ namespace RegistrationAndLogin.Controllers
 
                 // call change passwor method on first time login
                 //return RedirectToAction("ChangePassword");
-
+                
                 return RedirectToAction("Welcome", "Home");
+                //here we transfer to required action method according to role --a
             }
             else
             {
