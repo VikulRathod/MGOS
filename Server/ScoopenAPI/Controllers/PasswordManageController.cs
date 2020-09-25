@@ -1,6 +1,7 @@
 ﻿using ScoopenAPIBLL;
 using ScoopenAPIDAL;
 using ScoopenAPIModals.Account;
+using ScoopenAPIModals.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;

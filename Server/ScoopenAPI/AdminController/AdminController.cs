@@ -1,57 +1,48 @@
-﻿using System;
+﻿using ScoopenAPIBLL.Admin;
+using ScoopenAPIBLL.Utility;
+using ScoopenAPIDAL.Admin;
+using ScoopenAPIModals.Admin;
+using ScoopenAPIModals.Notifications;
+using ScoopenNotifications;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using ScoopenAPIBLL;
-using ScoopenAPIModals.Account;
-using ScoopenAPIModals.Notifications;
-using ScoopenAPIBLL.Utility;
-using ScoopenNotifications;
-using System.Web.Helpers;
-using ScoopenAPIDAL;
 
-namespace APIAuthentication.Controllers
+namespace ScoopenAPI.AdminController
 {
-    public class RegisterController : ApiController
+    public class AdminController : ApiController
     {
-        // Uncomment below line if you want to use SMS Notifications
-        //SMSNotifications notification = new SMSNotifications();
         EmailNotifications emailNotification = new EmailNotifications();
-
-        AccountControllerBLL bll = new AccountControllerBLL(new AccountControllerDAL());
-
-        [HttpPost]
-        public HttpResponseMessage RegisterUser([FromBody] UserInfo userInfo)
+        AdminControllerBLL abll = new AdminControllerBLL(new AdminControllerDAL());
+        public HttpResponseMessage RegisterAdmin([FromBody] Admin admin)
         {
             try
             {
-                if (userInfo != null)
+                if (admin != null)
                 {
                     string otp = new LoginHelper().GenerateRandomOtp();
 
-                    int result = bll.RegisterUser(userInfo.FirstName, userInfo.LastName, userInfo.Mobile, userInfo.Email, otp);
-
-                    OtpRequest request = new OtpRequest() { MobileNumber = userInfo.Mobile, Email = userInfo.Email, Otp = otp };
-
-                    // Uncomment below line if you want to send sms with otp
-                    //OtpResponse response = notification.SendOTP(request);
+                    int result = abll.RegisterAdmin(admin.FirstName, admin.LastName, admin.Email, admin.MobileNumber, admin.Address, admin.Zipcode, admin.CountryId, admin.StateId, otp);
+                    OtpRequest request = new OtpRequest() { MobileNumber =admin.MobileNumber, Email = admin.Email, Otp = otp };
                     OtpResponse emailresponse = emailNotification.SendOTP(request);
 
-                    bll.SaveOtpInDatabase(userInfo.Mobile, userInfo.Email, otp);
+                    abll.SaveOtpInDatabase(admin.MobileNumber, admin.Email, otp);
 
                     return Request.CreateResponse(HttpStatusCode.OK, emailresponse);
                 }
-
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "");
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
+
         }
 
-        [HttpPut]
-        public HttpResponseMessage ActivateRegisteredUser([FromBody] OtpRequest request)
+        public HttpResponseMessage ActivateRegisteredAdmin([FromBody] OtpRequest request)
         {
             try
             {
@@ -66,7 +57,7 @@ namespace APIAuthentication.Controllers
 
                         string password = new LoginHelper().GeneratePassword(8);
 
-                        int result = bll.ActivateRegisteredUser(request.MobileNumber, password, request.Email, request.Otp);
+                        int result = abll.ActivateRegisteredAdmin(request.MobileNumber, password, request.Email, request.Otp);
 
                         // Uncomment below lines if you want to send first time login details over sms
 
@@ -107,5 +98,7 @@ namespace APIAuthentication.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }
+
+
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ScoopenAPIDAL;
 using ScoopenAPIModals.Account;
-using ScoopenAPIDAL;
+
 
 namespace ScoopenAPIBLL
 {

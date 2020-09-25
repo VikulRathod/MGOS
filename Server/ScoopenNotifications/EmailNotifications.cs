@@ -54,7 +54,7 @@ namespace ScoopenNotifications
         {
             AccountControllerBLL bll = new AccountControllerBLL(new AccountControllerDAL());
 
-            string otp = bll.GetOtpFromDatabase(request.Mobile, request.Email);
+            string otp = bll.GetOtpFromDatabase(request.MobileNumber, request.Email);
 
             if (otp == request.Otp)
             {

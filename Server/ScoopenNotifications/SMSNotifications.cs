@@ -22,7 +22,7 @@ namespace ScoopenNotifications
 
             using (var client = new HttpClient())
             {
-                string url = _apiurl + _apiKey + "/SMS/+91" + request.Mobile + "/" + request.Otp;
+                string url = _apiurl + _apiKey + "/SMS/+91" + request.MobileNumber + "/" + request.Otp;
 
                 client.BaseAddress = new Uri(url);
 
