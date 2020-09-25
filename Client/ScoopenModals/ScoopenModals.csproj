@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Account\ActiveUser.cs" />
     <Compile Include="Account\LoginRequest.cs" />
+    <Compile Include="Admin\AdminLoginRequest.cs" />
+    <Compile Include="Admin\Admins.cs" />
     <Compile Include="Notifications\LoginDetailsSmsRequest.cs" />
     <Compile Include="Notifications\SmsOtpRequest.cs" />
     <Compile Include="Notifications\SmsOtpResponse.cs" />

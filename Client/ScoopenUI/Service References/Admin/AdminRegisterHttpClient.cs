@@ -1,38 +1,42 @@
-﻿using ScoopenAPIModals.Notifications;
-using ScoopenModals.Account;
+﻿using ScoopenAPIModals.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Web;
-using ScoopenAPIModals.Admin;
+using ScoopenAPIModals.Notifications;
+using System.Net;
+using RegistrationAndLogin.Service_References;
 
-namespace RegistrationAndLogin.Service_References.Account
+
+
+namespace RegistrationAndLogin.Service_References.Admin
 {
-    public class RegisterHttpClient : BaseHttpClient, IRegisterHttpClient
+    public class AdminRegisterHttpClient: BaseHttpClient, IAdminRegisterHttpClient
     {
-        public HttpResponseMessage RegisterUser(UserInfo userInfo)
+
+        public HttpResponseMessage RegisterAdmin(Admins admins)
         {
             using (ServiceClient)
             {
+                try { 
                 var resource = string.Format("api/register");
 
-                var response = ServiceClient.PostAsJsonAsync(resource, userInfo).Result;
+                var response = ServiceClient.PostAsJsonAsync(resource, admins).Result;
 
                 if (response.IsSuccessStatusCode)
                     return response;
+                }
+                catch(AggregateException e)
+                {
+
+                }
 
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
         }
 
-        internal object RegisterUser(Admins admins)
-        {
-            throw new NotImplementedException();
-        }
-
-        public HttpResponseMessage ActivateRegisteredUser(OtpRequest request)
+        public HttpResponseMessage ActivateRegisteredAdmin(OtpRequest request)
         {
             using (ServiceClient)
             {
@@ -47,7 +51,7 @@ namespace RegistrationAndLogin.Service_References.Account
             }
         }
 
-        public HttpResponseMessage Authenticate(LoginRequest login)
+        public HttpResponseMessage Authenticate(AdminLoginRequest login)
         {
             using (ServiceClient)
             {
@@ -62,7 +66,7 @@ namespace RegistrationAndLogin.Service_References.Account
             }
         }
 
-        public HttpResponseMessage ChangePasswordOnFirstLogin(LoginRequest login)
+        public HttpResponseMessage ChangePasswordOnFirstLogin(AdminLoginRequest login)
         {
             using (ServiceClient)
             {
@@ -76,5 +80,7 @@ namespace RegistrationAndLogin.Service_References.Account
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
         }
+
+      
     }
 }
