@@ -45,6 +45,7 @@
     <Compile Include="Account\LoginRequest.cs" />
     <Compile Include="Admin\Admin.cs" />
     <Compile Include="Admin\User.cs" />
+    <Compile Include="Demo\Demo.cs" />
     <Compile Include="GlobalConstants.cs" />
     <Compile Include="Notifications\LoginDetailsSmsRequest.cs" />
     <Compile Include="Notifications\SmsOtpRequest.cs" />
