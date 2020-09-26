@@ -13,5 +13,7 @@ namespace ScoopenAPIModals.Demo
         public string Gender { get; set; }
         public int MobilenUMBER { get; set; }
 
+        public string Address { get; set; }
+
     }
 }
