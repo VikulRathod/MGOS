@@ -12,13 +12,21 @@ namespace RegistrationAndLogin.Api
 {
     public class RegisterApiController : System.Web.Http.ApiController
     {
+        RegisterHttpClient _registerHttpClient = null;
+
+        public RegisterApiController(RegisterHttpClient registerHttpClient)
+        {
+            this._registerHttpClient = registerHttpClient;
+        }
+
         [HttpPost]
         [Route("api/register")]
         public HttpResponseMessage RegisterUser(UserInfo userInfo)
         {
-            var registerHttpClient = new RegisterHttpClient();
+           // var registerHttpClient = new RegisterHttpClient();
 
-            var response = registerHttpClient.RegisterUser(userInfo);
+            var response = _registerHttpClient.RegisterUser(userInfo);
+
             if (response.IsSuccessStatusCode)
             {
                 return response;
@@ -30,9 +38,9 @@ namespace RegistrationAndLogin.Api
         [Route("api/register")]
         public HttpResponseMessage ActivateRegisteredUser(OtpRequest request)
         {
-            var registerHttpClient = new RegisterHttpClient();
+            //var registerHttpClient = new RegisterHttpClient();
 
-            var response = registerHttpClient.ActivateRegisteredUser(request);
+            var response = _registerHttpClient.ActivateRegisteredUser(request);
             if (response.IsSuccessStatusCode)
             {
                 return response;
@@ -44,9 +52,9 @@ namespace RegistrationAndLogin.Api
         [Route("api/login")]
         public HttpResponseMessage Authenticate(LoginRequest login)
         {
-            var registerHttpClient = new RegisterHttpClient();
+           // var registerHttpClient = new RegisterHttpClient();
 
-            var response = registerHttpClient.Authenticate(login);
+            var response = _registerHttpClient.Authenticate(login);
             if (response.IsSuccessStatusCode)
             {
                 return response;
@@ -58,9 +66,9 @@ namespace RegistrationAndLogin.Api
         [Route("api/passwordmanage")]
         public HttpResponseMessage ChangePasswordOnFirstLogin(LoginRequest login)
         {
-            var registerHttpClient = new RegisterHttpClient();
+            //var registerHttpClient = new RegisterHttpClient();
 
-            var response = registerHttpClient.ChangePasswordOnFirstLogin(login);
+            var response = _registerHttpClient.ChangePasswordOnFirstLogin(login);
             if (response.IsSuccessStatusCode)
             {
                 return response;

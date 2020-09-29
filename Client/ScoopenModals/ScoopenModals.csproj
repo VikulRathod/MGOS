@@ -43,6 +43,10 @@
   <ItemGroup>
     <Compile Include="Account\ActiveUser.cs" />
     <Compile Include="Account\LoginRequest.cs" />
+    <Compile Include="Driver\DriverViewModel.cs" />
+    <Compile Include="Driver\Vehicle.cs" />
+    <Compile Include="Driver\VehicleOwner.cs" />
+    <Compile Include="Driver\VehicleType.cs" />
     <Compile Include="Notifications\LoginDetailsSmsRequest.cs" />
     <Compile Include="Notifications\SmsOtpRequest.cs" />
     <Compile Include="Notifications\SmsOtpResponse.cs" />

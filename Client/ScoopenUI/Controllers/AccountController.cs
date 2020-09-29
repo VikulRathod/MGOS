@@ -8,12 +8,14 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
+using RegistrationAndLogin.Service_References.Account;
 
 namespace RegistrationAndLogin.Controllers
 {
     public class AccountController : Controller
     {
-        RegisterApiController registerApiController = new RegisterApiController();
+        RegisterApiController registerApiController = 
+            new RegisterApiController(new RegisterHttpClient());
 
         [HttpGet]
         public ActionResult Register()

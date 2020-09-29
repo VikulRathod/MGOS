@@ -190,6 +190,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthTestController.cs" />
+    <Compile Include="Controllers\DriverController.cs" />
     <Compile Include="Controllers\PasswordManageController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
