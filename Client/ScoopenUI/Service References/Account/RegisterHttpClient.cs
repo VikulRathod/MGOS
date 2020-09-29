@@ -27,10 +27,7 @@ namespace RegistrationAndLogin.Service_References.Account
             }
         }
 
-        internal object RegisterUser(Admins admins)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public HttpResponseMessage ActivateRegisteredUser(OtpRequest request)
         {
